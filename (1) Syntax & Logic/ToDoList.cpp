@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <limits>
 
 using namespace std;
 
@@ -8,6 +9,7 @@ using namespace std;
 
 int main() {
     string ListName;
+    string Input;
     vector<string> List;
 
     cout << "TO DO LIST PROGRAM\n";
@@ -17,13 +19,30 @@ int main() {
 
 
 
-
+    /*
+    cin >> Input;
+    List.push_back(Input);
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    */
 
     return 0;
 }
 
 
+
+
+
 /*
+
+    cout << "[ " << ActionPlaceHolder << " ] \n" ;
+    cout << "====================================\n";
+    cout << ListName << endl;
+    cout << "====================================\n";
+    for(string iList:List) {
+        cout << "*" << iList << endl;
+    }
+
 TO DO LIST PROGRAM
 Plan to use
 getline(cin, input)
