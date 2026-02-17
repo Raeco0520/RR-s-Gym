@@ -78,24 +78,24 @@ int main() {
 
         for (int i = 0; i <= Input.length(); ++i) {
         // If we hit a space OR the end of the string, process the current token
-        if (i == Input.length() || Input[i] == ' ') {
-            if (!Token.empty()) {
-                // Use find() to avoid throwing exceptions
-                auto it = ReverseDict.find(Token);
+            if (i == Input.length() || Input[i] == ' ') {
+                if (!Token.empty()) {
+                    // Use find() to avoid throwing exceptions
+                    auto it = ReverseDict.find(Token);
                 
-                if (!(it == ReverseDict.end())) {
+                    if (!(it == ReverseDict.end())) {
                     Result += it->second; // If found, adds letter
-                } else {
+                    } else {
                     Result += '?'; // If not not found, stores '?' and keeps going
+                    }
+                    Token = ""; // Clear for the next Morse symbol
                 }
-                Token = ""; // Clear for the next Morse symbol
+            } else {
+                // Build the token character by character (dots and dashes)
+                Token += Input[i];
             }
-        } else {
-            // Build the token character by character (dots and dashes)
-            Token += Input[i];
         }
     }
-}
 
     cout << "Result : " << Result;
 
