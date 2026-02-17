@@ -97,7 +97,7 @@ int main() {
     }
 }
 
-    cout << "Your Input is : " << Result;
+    cout << "Result : " << Result;
 
     return 0;
 }
