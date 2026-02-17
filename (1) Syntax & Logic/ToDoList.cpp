@@ -1,75 +1,62 @@
 #include <iostream>
-#include <vector>
+#include <vector> //Used for arrays that dynamically resizes and manages its own memory, avoiding manual memory management for lazy folks like me
 #include <string>
-#include <limits>
 
 using namespace std;
 
-// work in progress
+void PrintList(const string& PName, const vector<string>& PList) { //Uses const reference variables to avoid copying the entire list into memory every time it executes 
+    cout << "\n \n \n";
+    cout << "===================================\n";
+    cout << PName << endl ;
+    cout << "===================================\n";
+    if (!PList.empty()) {
+        for (const auto& iList:PList) { //Ranged-based For-Loops iterates through every element || Regular For-Loops are for certain controls within the iteration process
+            cout << "* " << iList << endl ;
+        }
+    } else {
+        cout <<"(Your List is Empty) \n";
+    }
+    cout << "===================================\n";
+    cout << "(cmds: /delete, /clear, /break)\n";
+    cout << "Add Task: ";
+}
+
 
 int main() {
     string ListName;
     string Input;
-    vector<string> List;
+    vector<string> List; 
 
     cout << "TO DO LIST PROGRAM\n";
     cout << "Write List Name to Start : ";
-    cin >> ListName;
+    getline(cin, ListName); //cin only stores a single word, getline stores the entire line
     cout << endl;
 
+    PrintList(ListName, List);
 
+    while(getline(cin, Input)) { // Main Loop of the program, the user can input a task or use a command that performs a certain logic
 
-    /*
-    cin >> Input;
-    List.push_back(Input);
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    */
+        if (Input == "/break") { //Breaks out of the loop and concludes the program
+            break;
+        } else if (Input == "/delete") { //Deletes the last task, has an edge case since if you use pop_back in an empty vector, an error will happen.
+            if (!List.empty()) {
+                List.pop_back();
+            } else {
+                cout << "There is nothing to delete! \n";
+                cout << "Try Again: ";
+                continue;
+            }
+        } else if (Input == "/clear") { //Clears all the tasks
+            List.clear();
+
+        } else {
+            List.push_back(Input); //Adds a new task into the list
+
+        }
+
+        PrintList(ListName, List);
+    }
 
     return 0;
 }
-
-
-
-
-
-/*
-
-    cout << "[ " << ActionPlaceHolder << " ] \n" ;
-    cout << "====================================\n";
-    cout << ListName << endl;
-    cout << "====================================\n";
-    for(string iList:List) {
-        cout << "*" << iList << endl;
-    }
-
-TO DO LIST PROGRAM
-Plan to use
-getline(cin, input)
-clear() : Deletes all the bulletpoints
-pop back() : Delete latest bullet point
-push back() : Add new bulletpoint
-empty(): Checks if the list is empty
-begin() & end() : For iterating
-
-
-PSEUDO CODE PLAN
-
-instead of only cin, use getline(cin, input) to capture the whole line
-
-User must write the list name to start the program
-
-if user inputs "/delete", it deletes the most recent bullet point
-if user inputs "/clear", it clears all the bulletpoints
-    if there is no bulletpoints to delete, the program states that there is nothing to delete
-
-Every time the user enters a string, it adds as the latest bulletpoint
-and the program displays the title name reiterates from the oldest to the newest bulletpoint
-    If the input is an empty string, it will not be added as a new bulletpoint
-
-For more clarity, the action name is stated at the start after every successful input
-
-To get out of the program, user inputs "/break"
-
-*/
 
