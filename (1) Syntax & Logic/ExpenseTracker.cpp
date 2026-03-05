@@ -15,15 +15,15 @@ void clear() {
 
 void displayTable () {
     std::cout << "=================";
-    std::cout << "Expense Tracker";
-    std::cout << "================";
-    std::cout << "Item | Cost ";
+    std::cout << " Expense Tracker ";
+    std::cout << "=================";
+    std::cout << "  Item  |  Cost  ";
 
     // Insert vectors here (item definition and item cost)
     // plan to make '=' and '|' to be dynamic depending on the length of the total characters within the row
     // kinda like python if they have it idk
 
-    std::cout << "================";
+    std::cout << "=================";
 
 }
 
@@ -35,6 +35,8 @@ int main () {
     std::vector<double> itemCost{};
     int mode{};
 
+
+    do {
     std::cout << "Choose Mode\n";
     std::cout << "0 - End Program\n";
     std::cout << "1 - Add Item\n";
@@ -42,22 +44,35 @@ int main () {
     std::cout << "3 - Edit Item\n";
     std::cout << "Selection: ";
 
-
     while (!(std::cin >> mode) || mode < 0 || mode > 3) {
         std::cout << "Invalid Input : ";
         clear();
         }
 
     switch (mode) {
-        case 0 :
-
         case 1 :
+        std::cout << "Item : ";
+        std::cout << "Cost : ";
+        break;
 
         case 2 :
+        std::cout << "Index : ";
+        break;
 
         case 3 :
+        std::cout << "Index : ";
+        std::cout << "Item : ";
+        std::cout << "Cost : ";
+        break;
+
+        default :
+        break;
 
         }
+    
+    displayTable();
+
+    } while (!(mode == 0));
 
     return 0;
 }
