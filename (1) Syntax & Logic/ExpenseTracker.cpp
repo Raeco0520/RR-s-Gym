@@ -4,14 +4,12 @@
 #include <vector>
 
 
-
 //It's prolly just gonna be a more complex version of the To Do List
 
 void clear() {
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
-
 
 void displayTable () {
     std::cout << "=================";
@@ -24,55 +22,59 @@ void displayTable () {
     // kinda like python if they have it idk
 
     std::cout << "=================";
-
 }
 
 
-
+struct Item{
+    std::string name;
+    double cost;
+};  // Holy shit! My first struct or class thingy! Crazy!
+    // The vectors were gonna have the same index anyways so might as well put in a struct 
 
 int main () {
-    std::vector<std::string> itemDefinition{};
-    std::vector<double> itemCost{};
+    std::vector<Item> items;
     int mode{};
+    bool active{true};
 
 
-    do {
-    std::cout << "Choose Mode\n";
-    std::cout << "0 - End Program\n";
-    std::cout << "1 - Add Item\n";
-    std::cout << "2 - Delete Item\n";
-    std::cout << "3 - Edit Item\n";
-    std::cout << "Selection: ";
+    while (active) {
+        std::cout << "Choose Mode\n";
+        std::cout << "0 - End Program\n";
+        std::cout << "1 - Add Item\n";
+        std::cout << "2 - Delete Item\n";
+        std::cout << "3 - Edit Item\n";
 
-    while (!(std::cin >> mode) || mode < 0 || mode > 3) {
-        std::cout << "Invalid Input : ";
-        clear();
+        while (!(std::cin >> mode) || mode < 0 || mode > 3) {
+            std::cout << "Invalid Input: ";
+            clear();
         }
 
-    switch (mode) {
-        case 1 :
-        std::cout << "Item : ";
-        std::cout << "Cost : ";
-        break;
+        switch (mode) {
+            case 1 :
+            std::cout << "Item : ";
+            std::cout << "Cost : ";
+            break;
 
-        case 2 :
-        std::cout << "Index : ";
-        break;
+            case 2 :
+            std::cout << "Index : ";
+            break;
 
-        case 3 :
-        std::cout << "Index : ";
-        std::cout << "Item : ";
-        std::cout << "Cost : ";
-        break;
+            case 3 :
+            std::cout << "Index : ";
+            std::cout << "Item : ";
+            std::cout << "Cost : ";
+            break;
 
-        default :
-        break;
+            default :
+            active = false;
+            break;
 
         }
-    
-    displayTable();
 
-    } while (!(mode == 0));
+        displayTable();
+    }
 
     return 0;
-}
+} 
+// Apparently, the one I did was dumb. do-while for the entire program is not very readable, in this case I should use a while statement.
+// Note to self, use do-while for action-then-check loops, use while for condition-driven loops.
