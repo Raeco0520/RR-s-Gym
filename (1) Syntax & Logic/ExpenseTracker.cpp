@@ -25,11 +25,13 @@ void displayTable () {
 }
 
 
+
 struct Item{
     std::string name;
     double cost;
 };  // Holy shit! My first struct or class thingy! Crazy!
     // The vectors were gonna have the same index anyways so might as well put in a struct 
+
 
 int main () {
     std::vector<Item> items;
@@ -50,13 +52,36 @@ int main () {
         }
 
         switch (mode) {
+
+            /*
+            
+            Item is string type, use getline
+
+            Cost is double type, make an edge case if its not a bool
+
+            on the user's screen, the list goes 1 and above,
+            but for indexes it starts from 0, to avoid confusion
+            subtract from the user's input, and also add another edge 
+            case same as cost.
+
+            when deleting items, use vector.erase(vector.begin() + index)
+            
+            whopsie me been alot less frequent with my commits
+
+
+            
+            */
+
             case 1 :
+            
             std::cout << "Item : ";
+
             std::cout << "Cost : ";
             break;
 
             case 2 :
             std::cout << "Index : ";
+
             break;
 
             case 3 :
